@@ -45,6 +45,12 @@ impl<K, V> Chained<K, V> {
     }
 }
 
+impl<K, V> Default for Chained<K, V> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<K, V> Chained<K, V>
 where
     K: Hash + Eq,
