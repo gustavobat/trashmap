@@ -32,27 +32,27 @@ impl<K, V> Bucket<K, V> {
     }
 }
 
-pub struct Chained<K, V> {
+pub struct HashMap<K, V> {
     buckets: Vec<Bucket<K, V>>,
     len: usize,
 }
 
-impl<K, V> Chained<K, V> {
+impl<K, V> HashMap<K, V> {
     pub fn new() -> Self {
-        Chained {
+        HashMap {
             buckets: Vec::new(),
             len: 0,
         }
     }
 }
 
-impl<K, V> Default for Chained<K, V> {
+impl<K, V> Default for HashMap<K, V> {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl<K, V> Chained<K, V>
+impl<K, V> HashMap<K, V>
 where
     K: Hash + Eq,
 {
@@ -158,7 +158,7 @@ mod tests {
 
     #[test]
     fn new() {
-        let chained: Chained<i32, i32> = Chained::new();
+        let chained: HashMap<i32, i32> = HashMap::new();
         assert_eq!(chained.buckets.len(), 0);
         assert_eq!(chained.len, 0);
         assert!(chained.is_empty());
@@ -166,7 +166,7 @@ mod tests {
 
     #[test]
     fn operations() {
-        let mut chained = Chained::new();
+        let mut chained = HashMap::new();
 
         chained.insert("foo", 10);
         assert_eq!(chained.len(), 1);
